@@ -5,19 +5,14 @@ int main(int args, char *argv[])
 	const int screenWidth = 700;
 	const int screenHeight = 600;
 
-	int numberPUP = 0;
-	int numRand = 0;
-	int pUpRand = 0;
 	bool game = true;
-	bool win = false;
 	int posBolaX = screenWidth/2;
 	int posBolaY = screenHeight/2;
-	int incrementoY = 5;
-	int incrementoX = 5;
+	int incrementoY = 8;
+	int incrementoX = 7;
 	int contadorP1 = 0;
 	int contadorP2 = 0;
 	const float speed = 10;
-	const float speedIA = 5;
 	int playerHeight = 150;
 	int playerWidth = 30;
 
@@ -36,15 +31,14 @@ int main(int args, char *argv[])
 	float P2Edge;
 
 	int radio = 20;
-	int radiopUp = 20;
 
 	slWindow(screenWidth, screenHeight, "Bad Pong 2: Electric Boogaloo", false);
 
 	slSetFont(slLoadFont("ttf/white_rabbit.ttf"), 24);
 
 	slSetTextAlign(SL_ALIGN_CENTER);
-
-	int tex = slLoadTexture("png/glow.png");
+	slSetBackColor(0, 0, 0);//COLOR FONDO
+	slSetForeColor(1.0, 0.5, 0.5, 1.0); //COLOR DE LOS OBJETOS
 
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
 	{
@@ -55,7 +49,7 @@ int main(int args, char *argv[])
 		P2Bot = P2Y - playerHeight / 2;
 		P2Edge = P2X + playerWidth;
 
-		slSetForeColor(1.0, 0.1, 0.5, 1.0); //COLOR DE LOS OBJETOS
+
 
 		if (slGetKey('W') && P1Y + 75 < screenHeight)
 		{
@@ -102,7 +96,6 @@ int main(int args, char *argv[])
 		slRectangleOutline(P2X, P2Y, playerWidth, playerHeight);
 
 		slCircleOutline(posBolaX, posBolaY, radio, 99);
-
 
 		slRender();
 	}
