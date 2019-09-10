@@ -1,3 +1,5 @@
 ﻿  Source.cpp
-  LINK : no se encontró C:\Users\Administrador\Desktop\pong-2-sigil\Project1\Debug\Project1.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
-  Project1.vcxproj -> C:\Users\Administrador\Desktop\pong-2-sigil\Project1\Debug\Project1.exe
+c:\users\administrador\desktop\pong-2-sigil\project1\src\source.cpp(37): error C2065: 'string': identificador no declarado
+c:\users\administrador\desktop\pong-2-sigil\project1\src\source.cpp(37): error C2146: error de sintaxis: falta ';' delante del identificador 'textP1'
+c:\users\administrador\desktop\pong-2-sigil\project1\src\source.cpp(37): error C2065: 'textP1': identificador no declarado
+c:\users\administrador\desktop\pong-2-sigil\project1\src\source.cpp(37): error C3861: 'to_string': no se encontró el identificador

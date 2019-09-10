@@ -1,16 +1,7 @@
 ﻿  Source.cpp
-c:\users\administrador\source\repos\project1\src\source.cpp(17): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-Source.obj : error LNK2001: símbolo externo _slClose sin resolver
-Source.obj : error LNK2001: símbolo externo _slGetKey sin resolver
-Source.obj : error LNK2001: símbolo externo _slWindow sin resolver
-Source.obj : error LNK2001: símbolo externo _slSetFont sin resolver
-Source.obj : error LNK2001: símbolo externo _slRender sin resolver
-Source.obj : error LNK2001: símbolo externo _slLoadFont sin resolver
-Source.obj : error LNK2001: símbolo externo _slLoadTexture sin resolver
-Source.obj : error LNK2001: símbolo externo _slCircleOutline sin resolver
-Source.obj : error LNK2001: símbolo externo _slShouldClose sin resolver
-Source.obj : error LNK2001: símbolo externo _slRectangleOutline sin resolver
-Source.obj : error LNK2001: símbolo externo _slSetTextAlign sin resolver
-Source.obj : error LNK2001: símbolo externo _slSetForeColor sin resolver
-Source.obj : error LNK2001: símbolo externo _slRectangleFill sin resolver
-C:\Users\Administrador\source\repos\Project1\Release\Project1.exe : fatal error LNK1120: 13 externos sin resolver
+  Generando código
+  1 of 81 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Generación de código finalizada
+  Project1.vcxproj -> C:\Users\Administrador\Desktop\pong-2-sigil\Project1\Release\Project1.exe
