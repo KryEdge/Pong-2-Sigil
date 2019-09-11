@@ -1,5 +1,4 @@
 ﻿#include "sl.h"
-
 #include <string>
 using namespace std;
 
@@ -15,8 +14,8 @@ int main(int args, char *argv[])
 	int incrementoX = 8;
 	int contadorP1 = 0;
 	int contadorP2 = 0;
-	const float speed = 10;
-	const float IAspeed = 7;
+	const float speed = 8;
+	const float IAspeed = 5;
 	int playerHeight = 150;
 	int playerWidth = 30;
 
@@ -30,7 +29,8 @@ int main(int args, char *argv[])
 	float P1Bot;
 	float P1Edge;
 
-
+	bool movAbajo = false;
+	bool movArriba = false; // NO USADO POR AHORA
 
 	float P2X = screenWidth - 35;
 	float P2Y = screenHeight / 2;
@@ -72,11 +72,16 @@ int main(int args, char *argv[])
 			if (slGetKey('W') && P1Y + 75 < screenHeight)
 			{
 				P1Y += speed;
+				movArriba = true;
+				movAbajo = false;
 			}
 			if (slGetKey('S') && P1Y - 75 > 0)
 			{
 				P1Y -= speed;
+				movAbajo = true;
+				movArriba = false;
 			}
+
 			if (slGetKey(SL_KEY_UP) && P2Y + 75 < screenHeight && !IA)
 			{
 				P2Y += speed;
@@ -121,7 +126,7 @@ int main(int args, char *argv[])
 			if ((posBolaX <= P1Edge && (posBolaY >= P1Bot && posBolaY <= P1Top))
 				|| (posBolaX + 2 * radio >= P2X && (posBolaY >= P2Bot && posBolaY <= P2Top)))
 			{
-				if (posBolaY >= P1Y || posBolaY >= P2Y)
+				if (movAbajo)
 				{
 					incrementoY *= -1;
 				}
@@ -149,18 +154,40 @@ int main(int args, char *argv[])
 		}
 		else if(!game && !gameOver)
 		{
-			slText(screenWidth / 2, screenHeight / 2+120, "Bad Pong 2");
-			slText(screenWidth / 2, (screenHeight / 2) + 80, "Electric Boogaloo");
+			if (slGetKey(SL_KEY_ENTER))
+			{
+				game = true;
+				IA = true;
+			}
 
-			slText(screenWidth / 2, 70, "Presione Enter para jugar");
-
-			slText(screenWidth / 2, 190, "Controles: W y S para mover P para pausar");
-
-			slText(screenWidth / 2, 170, "Cambiar Colores (con A y D)");
-			slRectangleOutline(screenWidth / 2, 130, playerHeight, playerWidth);
-
-
-			slText(screenWidth / 2, 30, "Presione Esc para salir");
+			if (slGetKey('A') && !keyPressed)
+			{
+				keyPressed = true;
+				if (colorSel == 0)
+				{
+					colorSel = 4;
+				}
+				else
+				{
+					colorSel--;
+				}
+			}
+			else if (!slGetKey('A') && !slGetKey('D'))
+			{
+				keyPressed = false;
+			}
+			if (slGetKey('D') && !keyPressed)
+			{
+				keyPressed = true;
+				if (colorSel == 4)
+				{
+					colorSel = 0;
+				}
+				else
+				{
+					colorSel++;
+				}
+			}
 
 			switch (colorSel)
 			{
@@ -183,56 +210,32 @@ int main(int args, char *argv[])
 				break;
 			}
 
-			if (slGetKey(SL_KEY_ENTER))
-			{
-				game = true;
-				IA = true;
-			}
+			slText(screenWidth / 2, screenHeight / 2 + 120, "Bad Pong 2");
+			slText(screenWidth / 2, (screenHeight / 2) + 80, "Electric Boogaloo");
 
-			if (slGetKey('A') && !keyPressed)
-			{
-				keyPressed = true;
-				if (colorSel == 0)
-				{
-					colorSel = 4;
-				}
-				else
-				{
-					colorSel--;
+			slText(screenWidth / 2, 70, "Presione Enter para jugar");
 
-				}
-			}
-			else if (!slGetKey('A') && !slGetKey('D'))
-			{
-				keyPressed = false;
-			}
-			if (slGetKey('D') && !keyPressed)
-			{
-				keyPressed = true;
-				if (colorSel == 4)
-				{
-					colorSel = 0;
-				}
-				else
-				{
-					colorSel++;
-				}
-			}
+			slText(screenWidth / 2, 190, "Controles: W y S para mover P para pausar");
+
+			slText(screenWidth / 2, 170, "Cambiar Colores (con A y D)");
+			slRectangleOutline(screenWidth / 2, 130, playerHeight, playerWidth);
+
+
+			slText(screenWidth / 2, 30, "Presione Esc para salir");
 		}
 		else if (!game && gameOver)
 		{
-			slSetForeColor(2.5, 0, 0, 1.0);
-			slText(screenWidth / 2, screenHeight / 2, "YOU DIED");
-			slText(screenWidth / 2, 40, "PRESS P");
 			if (slGetKey('P'))
 			{
 				gameOver = false;
 				contadorP1 = 0;
 				contadorP2 = 0;
 			}
-		}
-	
-		
+
+			slSetForeColor(2.5, 0, 0, 1.0);
+			slText(screenWidth / 2, screenHeight / 2, "YOU DIED");
+			slText(screenWidth / 2, 40, "PRESS P");
+		}		
 		slRender();
 	}
 	slClose();
